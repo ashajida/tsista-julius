@@ -1,0 +1,200 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100i,200,300,400,500,500i");
+
+:root {
+  --theme-color: #ffc0cb;
+  --secondary-color: #f9f871;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+/*
+    #FFC0CB - light pink
+    #E8AA98 - light pink
+    #F9F871 - yellow
+
+*/
+
+/* Globals */
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+section {
+  padding: 35px 0;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: uppercase;
+  margin-bottom: 1.2em;
+}
+
+h1,
+h2 {
+  text-align: center;
+  font-weight: 300;
+}
+
+h2::after {
+  margin-top: 1em;
+  content: "";
+  height: 5px;
+  width: 9%;
+  margin: 0 auto;
+  margin-top: 1em;
+  display: block;
+  border-radius: 50px;
+  background-color: var(--secondary-color);
+}
+
+figure {
+  margin-bottom: 1.2em;
+}
+
+/* Links */
+
+ul {
+  list-style: none;
+}
+
+ul li {
+  display: block;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #fff;
+}
+
+header {
+  padding: 24px 0;
+  background-color: var(--theme-color);
+}
+
+/* Nav */
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  height: 0;
+  overflow: hidden;
+  transition: 0.5s all;
+}
+
+.burger-menu {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+.header-nav .container {
+  position: relative;
+}
+
+.burger-menu .line {
+  background-color: #fff;
+  height: 2px;
+  width: 38px;
+  margin-bottom: 8px;
+}
+
+.line:first-child {
+  width: 30px;
+}
+
+.open {
+  height: 150px;
+}
+
+.link,
+.logo {
+  margin-bottom: 20px;
+}
+
+.link:last-child {
+  margin-bottom: 0;
+}
+
+/* Slider */
+
+.section-slider {
+  padding: 0;
+}
+
+.section-slider .container {
+  width: 100%;
+}
+
+.slider-images-wrapper img {
+  width: 100%;
+}
+
+/* Our story */
+.description {
+  margin-bottom: 2em;
+}
+
+.inner-text {
+  margin-bottom: 1.2em;
+}
+
+.name {
+  text-align: right;
+  font-style: italic;
+}
+
+.description-img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1.2em;
+}
+
+.description-img img {
+  width: 100%;
+}
+
+/* The Wedding */
+
+.wedding-img {
+  width: 100%;
+}
+
+.wedding-img img {
+  width: 100%;
+}
+
+/* Wedding Group */
+
+.wedding-group {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.wedding-group .img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 1.3em;
+}
+
+.wedding-group .img img {
+  width: 100%;
+  height: 100%;
+  clip-path: circle(70px at center);
+  /* border: 1px solid #fff;
+  border-radius: 50%; */
+}
