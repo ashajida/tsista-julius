@@ -102,7 +102,7 @@ header {
   cursor: pointer;
 }
 
-.header-nav .container {
+header .container {
   position: relative;
 }
 
@@ -284,7 +284,6 @@ header {
 
 @media (min-width: 700px) {
   /* Section Gallary */
-
   .gallery {
     width: 90%;
   }
@@ -305,5 +304,34 @@ header {
     cursor: pointer;
     width: 25%;
     height: 280px;
+  }
+
+  /* Model */
+
+  .model {
+    width: 30%;
+  }
+
+  /* Nav */
+
+  .nav-links {
+    flex-direction: row;
+    height: auto;
+    justify-content: space-between;
+    width: 50%;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+  }
+
+  .burger-menu {
+    display: none;
+  }
+
+  .header-nav .container {
+    position: relative;
   }
 }
