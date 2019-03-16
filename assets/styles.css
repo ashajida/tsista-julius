@@ -81,7 +81,7 @@ a:visited {
 }
 
 header {
-  padding: 24px 0;
+  padding: 1em 0;
   background-color: var(--theme-color);
 }
 
@@ -124,6 +124,7 @@ header .container {
 .link,
 .logo {
   margin-bottom: 20px;
+  font-size: 14px;
 }
 
 .link:last-child {
@@ -325,10 +326,16 @@ header .container {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    align-items: baseline;
   }
 
   .burger-menu {
     display: none;
+  }
+
+  .link,
+  .logo {
+    margin-bottom: 0;
   }
 
   .header-nav .container {
