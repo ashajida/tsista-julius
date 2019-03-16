@@ -12,9 +12,14 @@ burgerBtn.addEventListener('click', function () {
 
 gallery.addEventListener('click', function (e) {
     const imageSrc = e.path[1].firstElementChild.src;
-    model.style.display = "block";
-    modelImage.src = imageSrc;
-    modelImage.style.opacity = 1;
+
+
+    if (e.target.className === "overlay") {
+        model.style.display = "block";
+        modelImage.src = imageSrc;
+        modelImage.style.opacity = 1;
+    }
+
 })
 
 closeBtn.addEventListener('click', function (e) {
