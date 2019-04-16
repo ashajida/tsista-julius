@@ -24,8 +24,7 @@
                     </div>
                     <div class="nav-links">
                         <a href="index.html" class="link">Home</a>
-                        <a href="gallery" class="link">Photo Gallery</a>
-                        <a href="details.html" class="link">Details</a>
+                        <a href="gallery.html" class="link">Photo Gallery</a>
                         <a href="messages.html" class="link">Messages</a>
                     </div>
                     <div class="burger-menu">
@@ -57,13 +56,9 @@
                             </div>
                         </div>
                         <p v-if="showFlash" class="success">{{ success }}<span @click="toggle"><i
-<<<<<<< HEAD
-                                    class="fas fa-times"></i></span>
-=======
                                     class="fas fa-times"></i></span></span>
->>>>>>> f438bce6ddb3f6f84a91aada05e25df5578c3e29
-                            <p>
-                                <message-form v-on:on-submit='postMessage'></message-form>
+                        </p>
+                        <message-form v-on:on-submit='postMessage'></message-form>
                     </div>
                 </div>
             </div>
