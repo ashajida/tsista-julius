@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="author" content="ash-ajida">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/styles.css" />
+    <title>T & J 👰🏾💐</title>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="wrapper">
+                <nav class="header-nav">
+                    <div class="logo">
+                        <span><a href="index.html">Our Wedding</a></span>
+                    </div>
+                    <div class="nav-links">
+                        <a href="index.html" class="link">Home</a>
+                        <a href="gallery" class="link">Photo Gallery</a>
+                        <a href="details.html" class="link">Details</a>
+                        <a href="messages.html" class="link">Messages</a>
+                    </div>
+                    <div class="burger-menu">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="section-messages">
+            <div class="container">
+
+                <h2>Leave a note to help us remember this special time in our lives. </br>Thanks for celebrating
+                    with
+                    us!</h2>
+                <div class="wrapper">
+                    <div id="app">
+                        <spinner v-if="loading"></spinner>
+                        <div v-if="showMessages" class="message" v-for="message in messages">
+                            <div class="message-body">
+                                <p>{{ message.message }}</p>
+                            </div>
+                            <div class="message-text-wrapper">
+                                <p class="message-name">{{ message.firstname }}&nbsp;&nbsp;{{ message.lastname }}</p>
+                                <p class="posted-at">{{ message.created_at }}</p>
+                            </div>
+                        </div>
+                        <p v-if="showFlash" class="success">{{ success }}<span @click="toggle">x</span>
+                            <p>
+                                <message-form v-on:on-submit='postMessage'></message-form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="container">
+                <div class="wrapper">
+                    <p class="copyright">&copy;2019 Ash Ajida</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+    <script>
+        var config = {
+            apiKey: "AIzaSyBfnW-uckeESEr2COYQ22wQUYnxGzBGnOE",
+            authDomain: "wedding-site-4bb37.firebaseapp.com",
+            databaseURL: "https://wedding-site-4bb37.firebaseio.com",
+            projectId: "wedding-site-4bb37",
+            storageBucket: "wedding-site-4bb37.appspot.com",
+            messagingSenderId: "521786455556"
+        };
+
+        firebase.initializeApp(config);
+
+        const db = firebase.firestore();
+
+    </script>
+    <script>
+        Vue.component('message-form', {
+            event: 'on-submit',
+            data() {
+                return {
+                    messageInput: '',
+                    firstnameInput: '',
+                    lastnameInput: '',
+                }
+            },
+            methods: {
+                handleOnSubmit() {
+                    const capitalise = (value) => {
+                        value = value.toString();
+                        return value.charAt(0).toUpperCase() + value.slice(1);
+                    }
+                    this.$emit('on-submit', capitalise(this.messageInput), capitalise(this.firstnameInput), capitalise(this.lastnameInput));
+
+                    this.messageInput = '';
+                    this.firstnameInput = '';
+                    this.lastnameInput = '';
+                }
+            },
+            template: '<div class="form-message"><form @submit.prevent="handleOnSubmit"><label>Firstname</label><br /><input type="text" v-model="firstnameInput" autofocus/><label>Lastname</label><br /><input type="text" v-model="lastnameInput" /><label>Message</label><br /><textarea v-model="messageInput" type="text"></textarea><button type="submit" class="btn">Post</button></form></div>'
+        });
+        Vue.component('message-card', {
+            props: ['message-body', 'created-at'],
+            template: '<div class="message-wrapper">{{created-at}}<p class="message-body"></p></div>'
+        });
+        Vue.component('spinner', {
+            template: '<div class="loading"><img class="spinner" src="./assets/images/spinner.gif" /></div>'
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                messages: [],
+                loading: true,
+                showFlash: false,
+                success: '',
+            },
+            computed: {
+                displayMessages() {
+
+                }
+            },
+            methods: {
+                postMessage(message, firstname, lastname) {
+                    db.collection('messages')
+                        .add({
+                            firstname,
+                            lastname,
+                            message,
+                            created_at: new Date().toUTCString()
+                        });
+
+                    this.success = 'Successfully Posted';
+                    this.showFlash = !this.showFlash;
+
+                },
+                toggle() {
+                    this.showFlash = !this.showFlash
+                }
+            },
+            created() {
+                db.collection('messages')
+                    .get()
+                    .then((snapshot) => {
+                        snapshot.docs.forEach(doc => {
+                            this.messages.push(doc.data());
+                            if (this.messages.length > 0) {
+                                this.loading = false;
+                                this.showMessages = true;
+                            }
+
+                        });
+                    });
+
+            },
+            updated() {
+
+            },
+        });
+    </script>
+    <script async src="assets/scripts/app.js"></script>
+</body>
+
+</html>
