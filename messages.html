@@ -8,6 +8,8 @@
     <meta name="author" content="ash-ajida">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/styles.css" />
     <title>T & J 👰🏾💐</title>
 </head>
@@ -54,7 +56,8 @@
                                 <p class="posted-at">{{ message.created_at }}</p>
                             </div>
                         </div>
-                        <p v-if="showFlash" class="success">{{ success }}<span @click="toggle">x</span>
+                        <p v-if="showFlash" class="success">{{ success }}<span @click="toggle"><i
+                                    class="fas fa-times"></i></span>
                             <p>
                                 <message-form v-on:on-submit='postMessage'></message-form>
                     </div>
@@ -64,6 +67,7 @@
         <footer>
             <div class="container">
                 <div class="wrapper">
+                    <div class="line-break"></div>
                     <p class="copyright">&copy;2019 Ash Ajida</p>
                 </div>
             </div>

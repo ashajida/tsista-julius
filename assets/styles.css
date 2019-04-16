@@ -429,6 +429,11 @@ input[type=text] {
   margin-bottom: 1.6em;
 }
 
+.success span {
+  margin-left: 1.5em;
+  cursor: pointer;
+}
+
 .posted-at, .message-name {
   width: fit-content;
   text-align: center;
