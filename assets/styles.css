@@ -431,7 +431,10 @@ input[type=text] {
 
 .success span {
   margin-left: 1.5em;
+<<<<<<< HEAD
   cursor: pointer;
+=======
+>>>>>>> f438bce6ddb3f6f84a91aada05e25df5578c3e29
 }
 
 .posted-at, .message-name {
