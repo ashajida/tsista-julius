@@ -9,6 +9,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -16,7 +17,6 @@ body {
   font-size: 18px;
   font-weight: 400;
   text-rendering: optimizeLegibility;
-  box-sizing: border-box;
 }
 
 /*
