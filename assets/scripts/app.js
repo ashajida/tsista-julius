@@ -40,8 +40,7 @@ closeBtn.addEventListener('click', function (e) {
     modelSection.style.display = "none";
 })
 
-btn.addEventListener('click', function (event) {
-    // event.preventDefault();
-    console.log('clicked');
+btn.addEventListener('click', function () {
     openForm.classList.toggle('form-open');
 });
+
