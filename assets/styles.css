@@ -431,6 +431,7 @@ input[type=text] {
 
 .success span {
   margin-left: 1.5em;
+  cursor: pointer;
 }
 
 .posted-at, .message-name {
@@ -569,10 +570,13 @@ input[type=text] {
   /* Messages */
   .message {
     width: 50%;
+    margin: 0 auto;
+    margin-bottom: 1.9em;
   }
 
   .form-message {
     width: 50%;
+    margin: 0 auto;
 
   }
 }
