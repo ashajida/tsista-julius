@@ -9,6 +9,7 @@ let closeBtn = document.querySelector('.close');
 let btn = document.querySelector('.btn');
 let openForm = document.querySelector('.message-form');
 
+
 burgerBtn.addEventListener('click', function () {
     menu.classList.toggle('open');
 })
@@ -32,8 +33,6 @@ document.addEventListener('click', function (e) {
     if (e.target.className === "section-model") {
         modelSection.style.display = "none";
     }
-
-    console.log(e.target.className);
 })
 
 closeBtn.addEventListener('click', function (e) {

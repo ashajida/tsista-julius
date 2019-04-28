@@ -162,23 +162,6 @@ header .container {
   color: var(--secondary-color);
 }
 
-.link:hover::after {
-  width: 100%;
-}
-
-.link::after {
-  content: "";
-  width: 0px;
-  height: 2px;
-  background-color: var(--secondary-color);
-  display: block;
-  margin: 0 auto;
-  margin-top: 5px;
-  transition: width 0.5s ease-in-out;
-}
-
-
-
 .logo {
   font-family: "Dancing Script", cursive;
   font-size: 20px;
@@ -509,6 +492,21 @@ input[type=text] {
   /* Section Gallary */
   .gallery {
     width: 90%;
+  }
+
+  .link:hover::after {
+    width: 100%;
+  }
+  
+  .link::after {
+    content: "";
+    width: 0px;
+    height: 2px;
+    background-color: var(--secondary-color);
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+    transition: width 0.5s ease-in-out;
   }
 }
 
