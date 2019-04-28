@@ -45,16 +45,9 @@
                     us!</h2>
                 <div class="wrapper">
                     <div id="app">
-                        <spinner v-if="loading"></spinner>
-                        <div v-if="showMessages" class="message" v-for="message in messages">
-                            <div class="message-body">
-                                <p>{{ message.message }}</p>
-                            </div>
-                            <div class="message-text-wrapper">
-                                <p class="message-name">{{ message.firstname }}&nbsp;&nbsp;{{ message.lastname }}</p>
-                                <p class="posted-at">{{ message.created_at }}</p>
-                            </div>
-                        </div>
+                        <!-- <spinner v-if="loading"></spinner> -->
+                        <message :key="index" v-for="(message, index, key) in this.$store.state.messages"
+                            :message="message"></message>
                         <p v-if="showFlash" class="success">{{ success }}<span @click="toggle"><i
                                     class="fas fa-times"></i></span></span>
                         </p>
@@ -77,6 +70,8 @@
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.4/firebase-database.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.8/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
     <script>
         var config = {
             apiKey: "AIzaSyBfnW-uckeESEr2COYQ22wQUYnxGzBGnOE",
@@ -93,6 +88,12 @@
 
     </script>
     <script>
+
+        Vue.component('message', {
+            props: ['message'],
+            template: '<div class= "message"><div class= "message-body"><p>{{ message.message }}</p></div><div class="message-text-wrapper"><p class="message-name">{{ message.firstname }}&nbsp;&nbsp;{{ message.lastname }}</p><p class="posted-at">{{ message.created_at }}</p></div></div>'
+        })
+
         Vue.component('message-form', {
             event: 'on-submit',
             data() {
@@ -100,6 +101,9 @@
                     messageInput: '',
                     firstnameInput: '',
                     lastnameInput: '',
+                    error: false,
+                    flashMessage: '',
+
                 }
             },
             methods: {
@@ -108,6 +112,25 @@
                         value = value.toString();
                         return value.charAt(0).toUpperCase() + value.slice(1);
                     }
+
+                    if (this.messageInput === '') {
+                        this.error = true;
+                        console.log('empty message');
+                        return;
+                    }
+
+                    if (this.firstnameInput === '') {
+                        this.error = true;
+                        console.log('empty firstname');
+                        return;
+                    }
+
+                    if (this.lastnameInput === '') {
+                        this.error = true;
+                        console.log('empty lastname');
+                        return;
+                    }
+
                     this.$emit('on-submit', capitalise(this.messageInput), capitalise(this.firstnameInput), capitalise(this.lastnameInput));
 
                     this.messageInput = '';
@@ -125,56 +148,77 @@
             template: '<div class="loading"><img class="spinner" src="./assets/images/spinner.gif" /></div>'
         });
 
+        Vue.use(Vuex);
+        const store = new Vuex.Store({
+            state: {
+                messages: []
+            },
+            mutations: {
+                fetchMessages(state, payload) {
+                    state.messages.push(payload);
+                },
+            }
+        });
+
         new Vue({
             el: '#app',
             data: {
-                messages: [],
+                // messages: [],
                 loading: true,
                 showFlash: false,
                 success: '',
+                showMessages: false
             },
-            computed: {
-                displayMessages() {
-
-                }
-            },
+            store,
             methods: {
+                toggle() {
+                    this.showFlash = !this.showFlash
+                },
                 postMessage(message, firstname, lastname) {
+                    const date = new Date().toUTCString();
+                    const newDate = date.split(" ", 4);
+
                     db.collection('messages')
                         .add({
                             firstname,
                             lastname,
                             message,
-                            created_at: new Date().toUTCString()
+                            created_at: date
                         });
+
+                    this.$store.state.messages = [];
+
+                    this.fetchMessagesFromDb();
+
 
                     this.success = 'Successfully Posted';
                     this.showFlash = !this.showFlash;
-
                 },
-                toggle() {
-                    this.showFlash = !this.showFlash
+                fetchMessagesFromDb() {
+
+                    db.collection('messages')
+                        .get()
+                        .then((snapshot) => {
+                            snapshot.docs.forEach(doc => {
+                                this.$store.commit('fetchMessages', doc.data());
+                            });
+                        });
+                    let self = this;
+                    // if (this.$store.state.messages.length > 0) {
+                    //     self.loading = false;
+                    //     self.showMessages = true;
+                    // }
+
                 }
             },
             created() {
-                db.collection('messages')
-                    .get()
-                    .then((snapshot) => {
-                        snapshot.docs.forEach(doc => {
-                            this.messages.push(doc.data());
-                            if (this.messages.length > 0) {
-                                this.loading = false;
-                                this.showMessages = true;
-                            }
-
-                        });
-                    });
-
-            },
-            updated() {
-
-            },
+                this.fetchMessagesFromDb();
+            }
         });
+
+
+
+
     </script>
     <script async src="assets/scripts/app.js"></script>
 </body>

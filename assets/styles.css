@@ -420,6 +420,7 @@ input[type=text] {
 }
 
 .success {
+  margin: 0 auto;
   width: fit-content;
   color: #fff;
   padding:0.5em;
@@ -470,6 +471,8 @@ input[type=text] {
 
 .spinner {
   width: 50px;
+  margin: 0 auto;
+  display: flex;
 }
 @media (min-width: 700px) {
   /* Section Gallary */
