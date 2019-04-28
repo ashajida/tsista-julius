@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:100i,200,300,400,500,500i");
 @import url("https://fonts.googleapis.com/css?family=Dancing+Script");
+@import url("http://reset5.googlecode.com/hg/reset.min.css");
 
 :root {
   --theme-color: #ffc0cb;
