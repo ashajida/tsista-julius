@@ -87,10 +87,14 @@ a:visited {
   color: #fff;
 }
 
+.quote {
+  font-size: 35px;
+}
+
 /* Button */
 
 .btn {
-  font-size: 17px;
+  font-size: 14px;
   border: 1px solid var(--theme-color);
   border-radius: 4px;
   padding: 0.8em;
@@ -101,13 +105,12 @@ a:visited {
 }
 
 .btn:hover {
-  font-size: 17px;
   border: 1px solid #e9afb9;
   background-color: #e9afb9;
 }
 
 header {
-  padding: 1em 0;
+  padding: 0.6em 0;
   background-color: var(--theme-color);
 }
 
@@ -119,6 +122,8 @@ header {
   height: 0;
   overflow: hidden;
   transition: 0.5s all;
+  align-self: center;
+  font-size: 1em;
 }
 
 .burger-menu {
@@ -150,8 +155,29 @@ header .container {
 .link,
 .logo {
   margin-bottom: 20px;
-  font-size: 17px;
+  font-size: 0.9em;
 }
+
+.link:hover {
+  color: var(--secondary-color);
+}
+
+.link:hover::after {
+  width: 100%;
+}
+
+.link::after {
+  content: "";
+  width: 0px;
+  height: 2px;
+  background-color: var(--secondary-color);
+  display: block;
+  margin: 0 auto;
+  margin-top: 5px;
+  transition: width 0.5s ease-in-out;
+}
+
+
 
 .logo {
   font-family: "Dancing Script", cursive;
@@ -188,10 +214,14 @@ header .container {
 }
 
 /* Our story */
-.description {
+.our-story .description {
   margin-bottom: 2em;
+  color: #5d5d5d;
 }
 
+.our-story h3 {
+  text-transform: none;
+}
 .inner-text {
   margin-bottom: 1.2em;
 }
@@ -563,13 +593,17 @@ input[type=text] {
     margin-bottom: 1.5em;
   }
 
+  .wedding-info-text {  
+    width: 40%;
+  }
+
   .wedding-img {
-    width: fit-content;
+    width: 50%;
     margin: 0 auto;
   }
   
   .wedding-img img {
-    width: auto;
+    width: 100%;
   }
   /* Messages */
   .message {
