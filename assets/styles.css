@@ -131,6 +131,7 @@ header {
   right: 0;
   top: 0;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 header .container {
