@@ -42,7 +42,7 @@ h1,
 h2,
 h3 {
   text-transform: uppercase;
-  margin-bottom: 1.2em;
+  margin-bottom: 1.5em;
 }
 
 h4 {
@@ -210,6 +210,22 @@ header .container {
   margin-bottom: 1.2em;
 }
 
+.copy-text {
+  margin-bottom: 1.5em;
+}
+
+.copy-text {
+  border: 2px solid var(--theme-color);
+  padding: 1.5em;
+  
+}
+
+.copy-text:last-of-type {
+  border: 2px solid #00BCD4;
+  padding: 1.5em;
+  margin-bottom: 0;
+}
+
 .text {
   margin-bottom: 1.5em;
 }
@@ -241,6 +257,13 @@ header .container {
 
 /* Wedding Group */
 
+.party-wrapper {
+  margin-bottom: 1.5em;
+}
+
+.party-wrapper:last-of-type {
+  margin-bottom: 0;
+}
 .wedding-group {
   display: flex;
   flex-direction: column;
