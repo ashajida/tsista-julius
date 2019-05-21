@@ -1,5 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,400&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Rouge+Script&display=swap');
+@import '../../node_modules/bootstrap/scss/mixins';
+@import '../../node_modules/bootstrap/scss/functions';
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/grid';
+
+ 
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100i,200,300,400,500,500i");
+@import url("https://fonts.googleapis.com/css?family=Dancing+Script");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 
 :root {
@@ -14,7 +20,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 18px;
   font-weight: 400;
   text-rendering: optimizeLegibility;
@@ -28,38 +34,33 @@ body {
 */
 
 /* Globals */
-.container {
-  width: 90%;
+.content {
+  @include make-container();
   margin: 0 auto;
 }
 
 section,
 footer {
-  padding: 80px 0;
+  padding: 35px 0;
 }
 
 h2 {
   font-size: 1.3em;
 }
 
-/* h3 {
+h3 {
   font-size: 1.2;
-} */
-/* 
+}
+
 h4 {
   font-size: 1.1em;
-} */
+}
 
 h1,
 h2,
 h3 {
   text-transform: uppercase;
   margin-bottom: 1.5em;
-}
-
-h2 {
-  text-transform: uppercase;
-  margin-bottom: 3em;
 }
 
 h4 {
@@ -82,10 +83,6 @@ h2::after {
   display: block;
   border-radius: 50px;
   background-color: var(--secondary-color);
-}
-
-p {
-  line-height: 143%;
 }
 
 figure {
@@ -131,16 +128,8 @@ a:visited {
 }
 
 header {
-  /* background-color: var(--theme-color); */
-  position: relative;
-}
-
-header .container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 1em 0 0.3em 0;
+  padding: 0.6em 0;
+  background-color: var(--theme-color);
 }
 
 /* Nav */
@@ -153,7 +142,6 @@ header .container {
   transition: 0.5s all;
   align-self: center;
   font-size: 1em;
-  background-color: #434343;
 }
 
 .burger-menu {
@@ -164,6 +152,9 @@ header .container {
   margin-top: 5px;
 }
 
+header .container {
+  position: relative;
+}
 
 .burger-menu .line {
   background-color: #fff;
@@ -180,27 +171,9 @@ header .container {
   height: 100px;
 }
 
-.header-nav {
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid #ccc; 
-  position: relative;
-}
-
-.link {
-  border-bottom: 1px solid #fff;
-  margin-bottom: 1em;
-}
-
-.link:last-of-type {
-  margin-bottom: none;
-}
-
-.link:last-of-type {
-  border-bottom: none;
-}
-
 .link,
 .logo {
+  margin-bottom: 20px;
   font-size: 0.9em;
 }
 
@@ -209,11 +182,12 @@ header .container {
 }
 
 .logo {
-  font-family: 'Rouge Script', cursive;
+  font-family: "Dancing Script", cursive;
+  font-size: 20px;
 }
 
 .logo a {
-  font-size: 30px;
+  font-size: 35px;
 }
 
 .logo-img {
@@ -229,53 +203,12 @@ header .container {
 
 /* Slider */
 
-.overlay-bg {
-  background-color: rgba(0, 0, 0, 0.6); 
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-}
-
-.icon-love {
-  margin-top: 1.2em;
-  font-size: 10px;
-}
-
-.love {
-  color: #d68a8a;
-  font-size: 2em;
-}
-
-.hero-text {
-  padding-top: 1.3em;
-  width: 60%;
-  height: 100%;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-family: 'Rouge Script', cursive;
-  color: #fff;
-}
-
-.hero-date {
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-}
-
-.hero-caption {
- font-size: 1.5em; 
-}
-
-.hero-text .big-name {
-  font-size: 43px;
-}
-
 .section-slider {
   padding: 0;
+}
+
+.section-slider .container {
+  width: 100%;
 }
 
 .slider-images-wrapper img {
@@ -286,81 +219,16 @@ header .container {
 .our-story .description {
   margin-bottom: 2em;
   color: #5d5d5d;
-  position: relative;
-  overflow: hidden;
 }
 
-
-.text span {
-  font-weight: 300;
-  color: #d68a8a;
-  margin-left: 1em;
-}
-
-.controls {
-  width: 73px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.prev, .next {
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 50%;
-}
-
-.current-story {
-  background-color: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
-}
-
-.story {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  transition: transform 0.5s ease-in-out;
-}
-
-.left-animation {
-  position: absolute;
-  transform: translateX(100%)
-}
-
-
-.right {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translateX(-100%)
-}
-
-.normal {
-  transform: translateX(0);
-  position: unset;
-  top: unset;
-  right: unset;
-}
-
-
-
-
-
-bg {
-  background-color: #00A8E2;
-}
-/* .our-story h3 {
+.our-story h3 {
   text-transform: none;
-} */
+}
 .inner-text {
   margin-bottom: 1.2em;
 }
 
 .copy-text {
-  display: flex;
-  flex-direction: row;
   margin-bottom: 1.5em;
 }
 
@@ -395,29 +263,7 @@ bg {
   width: 100%;
 }
 
-.text-wrapper {
-  width: 100%;
-}
-
 /* The Wedding */
-
-.wedding-info-wrapper {
-  background-color: #fff;
-  margin-bottom: 1.5em;
-}
-
-.wedding-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.text {
-  padding: 0 0.5em;
-}
-
-.section-wedding-details {
-  background-color: #fef7fb;
-}
 
 .wedding-img {
   width: 100%;
@@ -430,7 +276,6 @@ bg {
 /* Wedding Group */
 
 .party-wrapper {
-  width: 100%;
   margin-bottom: 1.5em;
 }
 
@@ -445,8 +290,8 @@ bg {
 }
 
 .wedding-group .img {
-  width: 60%;
-  height: 280px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
   margin-bottom: 1.3em;
 }
@@ -454,6 +299,9 @@ bg {
 .wedding-group .img img {
   width: 100%;
   height: 100%;
+  clip-path: circle(50px at center);
+  /* border: 1px solid #fff;
+  border-radius: 50%; */
 }
 
 /* Footer */
@@ -471,11 +319,6 @@ bg {
 } */
 
 /* Section Gallary */
-.gallery-hero {
-  height: 300px;
-  overflow: hidden;
-}
-
 .section-gallery {
   position: relative;
 }
@@ -514,7 +357,7 @@ bg {
   opacity: 1;
 }
 
-/* Modal */
+/* Model */
 
 .icon-wrapper {
   width: 40px;
@@ -530,11 +373,13 @@ bg {
   margin-top: 10px;
 }
 
-.modal {
+.model {
   transition: 0.5s all;
   border-radius: 2px;
   padding: 1em;
   height: fit-content;
+  transition: 0.5s all ease-in-out;
+  opacity: 0;
 }
 
 .close {
@@ -546,48 +391,33 @@ bg {
   flex-direction: row-reverse;
 }
 
-.modal-img-wrapper {
+.model-img-wrapper {
+  width: 90%;
   height: 400px;
   margin: 0 auto;
 }
 
-.modal-image {
+.model-image {
   width: 100%;
   height: 100%;
 }
 
-.section-modal {
-  margin: 0 auto; 
-  position: fixed;
-  background-color: rgba(241, 241, 241, 0.6);
+.section-model {
+  position: absolute;
+  width: 100%;
   top: 0;
-  left: 0;
   height: 100vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  visibility: hidden;
-  opacity: 0;
-  z-index: 99999;
-  transition: opacity 0.5s ease-in;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999999;
+  display: none;
 }
 
-.modal-active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.section-modal .wrapper {
+.section-model .wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  height: 76%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
-  padding: 14px 14px;
 }
 
 /* Section Messages */
@@ -701,39 +531,14 @@ input[type=text] {
   display: flex;
 }
 @media (min-width: 700px) {
-
-  /* Overlay */
-  .hero-date {
-    font-size: 18px;
-  }
-  
-  .hero-caption {
-   font-size: 2em; 
-  }
-  
-  .hero-text .big-name {
-    font-size: 80px;
-  }
-
-
   /* Section Gallary */
   .gallery {
     width: 90%;
   }
 
-  .nav-links {
-    background-color: unset;
-  }
-
   .link:hover::after {
     width: 100%;
   }
-
-  .link {
-    border-bottom: none;
-  }
-
-
   
   .link::after {
     content: "";
@@ -745,26 +550,9 @@ input[type=text] {
     margin-top: 5px;
     transition: width 0.5s ease-in-out;
   }
-
-  /* Party */
-  .party-wrapper {
-    width: 23%;
-    margin-bottom: 1.5em;
-  }
-
-  .wedding-group .img {
-    width: 100%;
-    height: 280px;
-    margin: 0 auto;
-    margin-bottom: 1.3em;
-  }
 }
 
 @media (min-width: 928px) {
-
-  .logo a {
-    font-size: 50px;
-  }
 
   /* Wedding Party */
   .wedding-group {
@@ -789,9 +577,9 @@ input[type=text] {
     height: 280px;
   }
 
-  /* Modal */
+  /* Model */
 
-  .section-modal .wrapper {
+  .section-model .wrapper {
     width: 50%;
   }
 
@@ -815,65 +603,55 @@ input[type=text] {
     display: none;
   }
 
-  .link {
+  .link,
+  .logo {
     margin-bottom: 0;
   }
 
-  logo {
-    margin-bottom: 50px;
+  .link {
+    border-bottom: 1px solid #fff;
   }
 
-  .slider-images-wrapper {
-    position: relative;
+  .link:last-of-type {
+    border-bottom: none;
   }
 
-  .hero-text .big-name {
-    font-size: 100px;
-  }
-
-
-  .section-slider {
+  .header-nav .container {
     position: relative;
   }
 
   /* Story Image */
-
-  .story {
-    display: flex;
-    flex-direction: row;
-  }
-
   .description-img {
-    width: 48%;
+    width: fit-content;
     margin: 0 auto;
     margin-bottom: 1.5em;
   }
 
   .description-img img {
-    width: 350px;
-  }
-
-  .text-wrapper {
-    width: 48%;
+    width: auto;
   }
 
   /* Wedding Image */
 
-
   .wedding-info {
-    flex-direction: row;
+    display: flex;
     justify-content: space-around;
-
+    margin: 0 auto;
+    width: 70%;
+    margin-bottom: 1.5em;
   }
 
-  .wedding-info-wrapper {  
-    width: 48%; 
-    margin-bottom: 0;   
+  .wedding-info-text {  
+    width: 40%;
+  }
+
+.text p {
+    margin-bottom: 0.9em;
   }
 
   .wedding-img {
-    width: 100%;
-    margin-bottom: 1.2em;
+    width: 50%;
+    margin: 0 auto;
   }
   
   .wedding-img img {
