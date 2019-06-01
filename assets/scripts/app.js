@@ -12,7 +12,13 @@ const btnNext = document.querySelector('.next');
 const btnPrev = document.querySelector('.prev');
 const storyleft = document.querySelector('.story.left');
 const storyRight = document.querySelector('.story.right');
+const links = document.querySelector('.nav-links');
 
+links.addEventListener('click', (e) => {
+    console.log(e.target.className);
+    if (e.target.className === 'link') e.target.classList.add('current-page');
+    if (e.target.className === 'link current-page') e.target.classList.remove('current-page');
+})
 
 burgerBtn.addEventListener('click', function () {
     menu.classList.toggle('open');
@@ -82,4 +88,61 @@ function slideShow() {
     setTimeout('slideShow()', 6000);
 }
 
-window.onload = slideShow();
+if (imgDiv) window.onload = slideShow();
+
+
+function countdown(element) {
+
+    var endDate = new Date("Jun 21, 2019 09:00:00").getTime();
+
+    var timer = setInterval(function () {
+
+        let now = new Date().getTime();
+        let t = endDate - now;
+
+        if (t >= 0) {
+
+            let days = Math.floor(t / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+            let secs = Math.floor((t % (1000 * 60)) / 1000);
+
+            element.daysLeft.innerHTML = days +
+                "<span class='label'>DAY(S)</span>";
+
+            element.hoursLeft.innerHTML = ("0" + hours).slice(-2) +
+                "<span class='label'>HR(S)</span>";
+
+            element.minutesLeft.innerHTML = ("0" + mins).slice(-2) +
+                "<span class='label'>MIN(S)</span>";
+
+            element.secondsLeft.innerHTML = ("0" + secs).slice(-2) +
+                "<span class='label'>SEC(S)</span>";
+
+        } else {
+
+            document.getElementById("timer").innerHTML = "The countdown is over!";
+
+        }
+
+    }, 1000);
+
+}
+
+const daysLeft = document.querySelector('.days');
+const hoursLeft = document.querySelector('.hours');
+const minutesLeft = document.querySelector('.minutes');
+const secondsLeft = document.querySelector('.seconds');
+
+countdown({
+    daysLeft,
+    hoursLeft,
+    minutesLeft,
+    secondsLeft
+});
+
+const song = './song.mp3';
+
+let audio = new Audio();
+audio.src = song;
+audio.play();

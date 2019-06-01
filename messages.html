@@ -17,7 +17,8 @@
 <body>
     <header>
         <div class="slider-images-wrapper gallery-hero">
-            <img src="assets/images/camera.jpg" alt="love birds" />
+            <img class="gallery-hero-img" src="assets/images/camera.jpg" alt="love birds"
+                srcset="assets/images/camera-sm.png, assets/images/camera-md.png 500w, assets/images/camera.png 1000w" />
             <div class="overlay-bg">
                 <div class="hero-text">
                     <span class="big-name gallery-big">Leave us a message</span>
@@ -95,7 +96,7 @@
 
         Vue.component('message', {
             props: ['message'],
-            template: '<div class= "message"><div class= "message-body"><p>{{ message.message }}</p></div><div class="message-text-wrapper"><p class="message-name">{{ message.firstname }}&nbsp;&nbsp;{{ message.lastname }}</p><p class="posted-at">{{ message.created_at }}</p></div></div>'
+            template: '<div class= "message"><div class= "message-body"><p>{{ message.message }}</p></div><div class="message-text-wrapper"><p class="message-name">{{ message.firstname }}</p><p class="posted-at">{{ message.created_at }}</p></div></div>'
         })
 
         Vue.component('message-form', {
@@ -104,7 +105,6 @@
                 return {
                     messageInput: '',
                     firstnameInput: '',
-                    lastnameInput: '',
                     error: false,
                     flashMessage: '',
 
@@ -129,20 +129,14 @@
                         return;
                     }
 
-                    if (this.lastnameInput === '') {
-                        this.error = true;
-                        console.log('empty lastname');
-                        return;
-                    }
 
-                    this.$emit('on-submit', capitalise(this.messageInput), capitalise(this.firstnameInput), capitalise(this.lastnameInput));
+                    this.$emit('on-submit', capitalise(this.messageInput), capitalise(this.firstnameInput));
 
                     this.messageInput = '';
                     this.firstnameInput = '';
-                    this.lastnameInput = '';
                 }
             },
-            template: '<div class="form-message"><form @submit.prevent="handleOnSubmit"><label>Firstname</label><br /><input type="text" v-model="firstnameInput" autofocus/><label>Lastname</label><br /><input type="text" v-model="lastnameInput" /><label>Message</label><br /><textarea v-model="messageInput" type="text"></textarea><button type="submit" class="btn">Post</button></form></div>'
+            template: '<div class="form-message"><form @submit.prevent="handleOnSubmit"><label>Name</label><br /><input type="text" v-model="firstnameInput" autofocus/><label>Message</label><br /><textarea v-model="messageInput" type="text"></textarea><button type="submit" class="btn">Post</button></form></div>'
         });
         Vue.component('message-card', {
             props: ['message-body', 'created-at'],
@@ -180,14 +174,14 @@
                 },
                 postMessage(message, firstname, lastname) {
                     const date = new Date().toUTCString();
-                    const newDate = date.split(" ", 4);
+                    const y = date.split(" ");
+                    const newDate = `${y[2]}. ${y[1]}, ${y[3]}`
 
                     db.collection('messages')
                         .add({
                             firstname,
-                            lastname,
                             message,
-                            created_at: date
+                            created_at: newDate
                         });
 
                     this.$store.state.messages = [];
