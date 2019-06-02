@@ -93,7 +93,7 @@ if (imgDiv) window.onload = slideShow();
 
 function countdown(element) {
 
-    var endDate = new Date("Jun 21, 2019 09:00:00").getTime();
+    var endDate = new Date("Jun 27, 2019 09:00:00").getTime();
 
     var timer = setInterval(function () {
 
