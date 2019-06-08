@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Rouge+Script&display=swap');
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
 @import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,600,700|EB+Garamond:400,500,600&display=swap');
-
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 :root {
   --theme-color: #ffc0cb;
   --secondary-color: #f9f871;
@@ -367,6 +367,7 @@ bg {
 } */
 .inner-text {
   margin-bottom: 1.2em;
+  font-size: 1rem;
 }
 
 .copy-text {
@@ -703,6 +704,7 @@ input[type=text] {
 .message-text-wrapper {
   display: flex;
   font-display: row;
+  font-size: 1.5rem;
 }
 
 .message-name {
@@ -782,7 +784,9 @@ input[type=text] {
 @media (min-width: 700px) {
 
   /*Wedding group*/
-  
+  .inner-text {
+    font-size: 1em;
+  }
 
   /* Overlay */
   .hero-date {
