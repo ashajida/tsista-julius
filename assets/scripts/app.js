@@ -145,4 +145,5 @@ const song = './song.mp3';
 
 let audio = new Audio();
 audio.src = song;
-audio.play();
+
+window.onload = () => audio.play();
